@@ -144,17 +144,19 @@ body {
       // 「BOY」に止まるように調整（インデックス0 = 0度）
       // 「GIRL」に止まるときは （インデックス60）
       const fullRotations = 5;
-      const targetAngle = 0;
+      const targetAngle = 60;
       const finalRotation = fullRotations * 360 + targetAngle;
 
-      canvas.style.transition = "transform 3s ease-out";
+      canvas.style.transition = "transform 7s ease-out"; // 止まるまでの時間調整
       canvas.style.transform = `rotate(${finalRotation}deg)`;
 
-      setTimeout(() => {
-        alert("「BOY」が生まれます！");
+      canvas.addEventListener("transitionend", function handler() {
+        alert("「女の子」が生まれます！");
         rotation = finalRotation % 360;
         canvas.style.transition = "none";
-      }, 3000);
+
+        canvas.removeEventListener("transitionend", handler);
+      });
     }); 
  
   </script>
